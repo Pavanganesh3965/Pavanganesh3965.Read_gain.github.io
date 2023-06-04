@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <style>
+    .book {
+      transition: opacity 0.4s 0.2s;
+    }
+    p {
+      margin-top: 8vw;
+      text-align: center;
+      font-size: 5vw;
+      color: #000000;
+    }
+    .page {
+      width: 40vw;
+      height: 55vw;
+      float: left;
+      margin-bottom: 0.5em;
+      background: top no-repeat;
+      background-size: cover;
+    }
+    .page:nth-child(even) {
+      clear: both;
+    }
+    .book {
+      perspective: 250vw;
+    }
+    .book .pages {
+      width: 80vw;
+      height: 55vw;
+      position: relative;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      border-radius: 4px;
+    }
+    .book .page {
+      float: none;
+      clear: none;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      width: 40vw;
+      height: 55vw;
+      transform-origin: 0 0;
+      transition: transform 1.4s;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      user-select: none;
+      background-color: #E0C9A6;
+    }
+    .book .page:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transition: background 0.7s;
+      z-index: 2;
+    }
+    .book .page:nth-child(odd) {
+      pointer-events: all;
+      transform: rotateY(0deg);
+      right: 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .book .page:nth-child(odd):hover {
+      transform: rotateY(-15deg);
+    }
+    .book .page:nth-child(odd):hover:before {
+      background: rgba(0, 0, 0, 0.03);
+    }
+    .book .page:nth-child(odd):before {
+      background: rgba(0, 0, 0, 0);
+    }
+    .book .page:nth-child(even) {
+      pointer-events: none;
+      transform: rotateY(180deg);
+      transform-origin: 100% 0;
+      left: 0;
+      border-radius: 4px 0 0 4px;
+      border-color: black;
+    }
+    .book .page:nth-child(even):before {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .book .page.grabbing {
+      transition: none;
+    }
+    .book .page.flipped:nth-child(odd) {
+      pointer-events: none;
+      transform: rotateY(-180deg);
+    }
+    .book .page.flipped:nth-child(odd):before {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .book .page.flipped:nth-child(even) {
+      pointer-events: all;
+      transform: rotateY(0deg);
+    }
+    .book .page.flipped:nth-child(even):hover {
+      transform: rotateY(15deg);
+    }
+    .book .page.flipped:nth-child(even):hover:before {
+      background: rgba(0, 0, 0, 0.03);
+    }
+    .book .page.flipped:nth-child(even):before {
+      background: rgba(0, 0, 0, 0);
+    }
+    *,
+    * :before,
+    *:after {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      font-family: "Lovers Quarrel", cursive;
+      background: #f8f6e9;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+    html {
+      height: 100%;
+    }
+    .page{
+        padding: 30px;
+        border: 5px solid black;
+    }
+    body {
+      min-height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2em 0;
+      line-height: 1.5em;
+    }
+    .page:nth-child(odd) {
+      background-position: right top;
+    }
+  </style>
+  <body>
+    <form action="/home" method="post">
+        <button type="submit" class="btn btn-outline-dark btn-lg" style="background-color: black;position: absolute;left: 0px;top:0px;width: 100px;" ><a href="book.ejs" style="text-decoration: none;color: white;" ><h1 >Go back</h1></a></button>
+    </form>
+    
+    
+    <div class="book" >
+      <div id="pages" class="pages" style="background-color:#db864c; ">
+        <div
+          class="page"
+          style="
+            background-image: url('https://papermine.com/pub/autoship-wellness-june20202/media/32191221.png');
+          "
+        >
+        <h1>Title: Anna Karenina</h1>
+        <h2>Author: Leo Tolstoy</h2>
+        <b>Description:</b> Anna Karenina is a novel by Leo Tolstoy, first published in 1878. It is widely considered to be one of the greatest works of literature ever written. The novel tells the story of Anna Karenina, a married woman who falls in love with Count Vronsky. Their affair leads to scandal and tragedy. The novel is set in late-19th century Russia and explores themes of love, marriage, betrayal, and social class. It is a complex and multi-layered work that has been praised for its realism, its insights into human nature, and its beautiful prose. Anna Karenina has been adapted for film and television numerous times. The most recent adaptation, directed by Joe Wright, was released in 2012. Here are some of the key themes of Anna Karenina: Love: Anna and Vronsky's love is passionate and all-consuming, but it is also doomed from the start.
+        Marriage: Anna's marriage to Alexei Karenin is loveless and suffocating. She feels trapped and unfulfilled.
+        Betrayal: Anna's affair with Vronsky betrays her husband, her family, and her friends.
+        Social class: Anna's social standing is threatened by her affair with Vronsky. She is ostracized by her friends and family.
+        Realism: Tolstoy's novel is a realistic portrayal of life in late-19th century Russia. It is unflinching in its depiction of love, betrayal, and tragedy.
+        Human nature: Anna Karenina is a complex and fascinating character. She is both strong and weak, passionate and self-destructive. She is a product of her time and place, but she is also a universal figure.
+        Beautiful prose: Tolstoy was a master of the Russian language. His prose is lyrical and evocative. It brings the characters and the setting to life.
+        Anna Karenina is a classic novel that has been enjoyed by readers for generations. It is a complex and challenging work, but it is also a beautiful and rewarding one.</div>
+        <div
+          class="page"
+          style="
+            background-image: url('https://papermine.com/pub/autoship-wellness-june20202/media/32191283.png');
+          "
+        >
+        <h1>Title: Leaves of Grass</h1>
+        <h2>Author: Walt Whitman</h2>
+        <b>Description:</b> Leaves of Grass is a poetry collection by American poet Walt Whitman. Though it was first published in 1855, Whitman spent most of his professional life writing, rewriting, and expanding Leaves of Grass until his death in 1892. Six or nine individual editions of Leaves of Grass were produced, depending on how they are distinguished. This resulted in vastly different editions over four decades. The first edition was a small book of twelve poems, and the last was a compilation of over 400.
+
+The title of the collection is a pun, as grass was a term given by publishers to works of minor value, and leaves is another name for the pages on which they were printed. The first edition was published in Brooklyn at the printing shop of two Scottish immigrants, James and Andrew Rome, whom Whitman had known since the 1840s. The shop was located at Fulton Street (now Cadman Plaza West) and Cranberry Street, now the site of apartment buildings that bear Whitman's name.
+
+Leaves of Grass is a celebration of the American experience. Whitman's poems are often long and rambling, and they often lack traditional poetic forms. However, they are also full of passion, energy, and optimism. Whitman's vision of America was one of a nation of individuals, all of whom are equal and all of whom have the potential to achieve greatness.
+
+Leaves of Grass was a controversial work when it was first published. Some critics dismissed it as being too radical and unpolished. However, the book also attracted a number of enthusiastic readers, including Ralph Waldo Emerson and Henry David Thoreau. Whitman's poems have been praised for their originality, their democratic spirit, and their celebration of the human body.
+
+Leaves of Grass is a landmark work of American literature. It is a powerful and moving expression of Whitman's vision of America, and it has inspired generations of writers and artists.
+
+
+
+
+
+    </div>
+        <div
+          class="page"
+          style="
+            background-image: url('https://papermine.com/pub/autoship-wellness-june20202/media/32191250.png');
+          "
+        ><h1>Title: Willpower Instinct</h1>
+        <h2>Author: Kelly McGonigal </h2>
+        <b>Description:</b>
+The Willpower Instinct by Kelly McGonigal is a self-help book that explains the science of self-control and how it can be harnessed to improve our health, happiness, and productivity. The book is based on McGonigal's wildly popular course "The Science of Willpower" at Stanford University.
+
+The book argues that willpower is not an unlimited resource, and that it can be depleted by stress, temptation, and other factors. However, McGonigal also argues that willpower can be strengthened through practice. She provides a number of strategies for increasing willpower, including:
+
+Making small changes. When trying to change a behavior, it's important to start small. Trying to make too many changes at once can be overwhelming and lead to failure.
+Finding your triggers. What are the things that make you lose your willpower? Once you know your triggers, you can start to develop strategies for avoiding them or coping with them in a healthy way.
+Taking breaks. When you're feeling overwhelmed, it's important to take a break. Get some exercise, listen to music, or do something else that will help you relax and recharge.
+Rewarding yourself. When you do something that requires willpower, be sure to reward yourself. This will help you stay motivated and make it more likely that you'll continue to make healthy choices.
+The Willpower Instinct is a helpful and informative book that can teach you how to increase your willpower and improve your life.
+
+Here are some additional points from the book:
+
+Willpower is a muscle. The more you use it, the stronger it gets.
+Willpower is contagious. You can catch willpower from the people around you.
+Willpower is not the only thing that matters. Other factors, such as motivation and environment, also play a role in our behavior.</div>
+        <div
+          class="page"
+          style="
+            background-image: url('https://papermine.com/pub/autoship-wellness-june20202/media/32191400.png');
+          "
+        ><h1>Title: Steve Jobs</h1>
+        <h2>Author: Walter Isaacson</h2>
+        <b>Description:</b> Steve Jobs was a visionary entrepreneur who changed the world with his innovative products and marketing genius. He was also a complex and controversial figure, known for his perfectionism, his temper, and his ruthless business tactics.
+
+The book, Steve Jobs, is an unauthorized biography that was written by Walter Isaacson. It is based on more than 40 interviews with Jobs, as well as interviews with his family, friends, colleagues, and rivals. The book chronicles Jobs's life from his early childhood to his death in 2011.
+
+Isaacson paints a vivid portrait of Jobs as a brilliant but flawed genius. He was a brilliant marketer and product designer, but he could also be arrogant and ruthless. He was also a demanding boss who often clashed with his employees.
+
+Despite his flaws, Jobs was a transformative figure who changed the way we live and work. He created some of the most iconic products of our time, including the Macintosh computer, the iPod, the iPhone, and the iPad. He also helped to revolutionize the music, film, and publishing industries.
+
+Steve Jobs is a fascinating and inspiring book that tells the story of one of the most influential people of our time. It is a must-read for anyone who is interested in business, technology, or innovation.</div>
+        <div
+          class="page"
+          style="
+            background-image: url('https://papermine.com/pub/autoship-wellness-june20202/media/32191336.png');
+          "
+        ><h1>Title: gatsby</h1>
+        <h2>Author: F. Scott Fitzgerald</h2>
+        <b>Description:</b> The Great Gatsby is a novel set in the Jazz Age on Long Island. It tells the story of Jay Gatsby, a self-made millionaire, and his pursuit of Daisy Buchanan, a wealthy young woman whom he loved in his youth. The novel is narrated by Nick Carraway, who recounts the events of the summer of 1922, after he takes a house in the fictional village of West Egg on Long Island. Gatsby lives in a gigantic Gothic mansion across the Sound from Nick. He throws extravagant parties every Saturday night, but no one knows who he is or where he came from. Nick eventually meets Gatsby and learns that he made his fortune through bootlegging and other illegal activities. Gatsby's only goal in life is to win back Daisy, who is now married to Tom Buchanan, a wealthy man from East Egg. Gatsby and Daisy begin an affair, but it is doomed from the start. Tom is suspicious of Gatsby and eventually confronts him. Gatsby admits to his past and tells Tom that he loves Daisy. Tom is unmoved and tells Gatsby that Daisy will never leave him. Daisy is torn between her love for Gatsby and her fear of losing Tom. She eventually decides to stay with Tom, and Gatsby is left heartbroken. He drives his car recklessly and is killed in a collision. The Great Gatsby is a cautionary tale about the dangers of pursuing the American Dream. Gatsby's wealth and power could not buy him the one thing he wanted most: Daisy's love. The novel also explores themes of love, loss, and the American Dream.</div>
+        <div
+          class="page"
+          style="
+            background-image: url('https://papermine.com/pub/autoship-wellness-june20202/media/32191370.png');
+          "
+        ><<h1>Title: Wings of Fire</h1>
+        <h2>Author:  Avul Pakir Jainulabdeen Abdul Kalam and Arun Tiwari</h2>
+        <b>Description:</b> Wings of Fire is an autobiography by A.P.J. Abdul Kalam, the 11th President of India. The book chronicles Kalam's life from his childhood in Rameswaram, Tamil Nadu, to his role in developing India's nuclear and missile programs. Kalam was born into a poor family in 1931. He showed an early aptitude for science and mathematics, and he was awarded a scholarship to study at the prestigious Indian Institute of Technology, Madras. After graduating, Kalam joined the Defence Research and Development Organisation (DRDO), where he worked on developing India's first indigenously-produced missiles. In 1982, Kalam was appointed as the Scientific Adviser to the Defence Minister. In this role, he played a key role in the development of India's nuclear weapons program. In 1992, Kalam was appointed as the Director of the Defence Research and Development Laboratory (DRDL). In this role, he oversaw the development of a number of new missiles, including the Agni missile and the Prithvi missile. In 2002, Kalam was elected as the 11th President of India. He served as President for two terms, during which he focused on promoting science and technology education, and on improving the lives of the poor. Wings of Fire is an inspiring story of a man who rose from humble beginnings to achieve great things. It is a story of hard work, dedication, and never giving up on your dreams.</div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var pages = document.getElementsByClassName("page");
+    for (var i = 0; i < pages.length; i++) {
+      var page = pages[i];
+      if (i % 2 === 0) {
+        page.style.zIndex = pages.length - i;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      for (var i = 0; i < pages.length; i++) {
+        //Or var page = pages[i];
+        pages[i].pageNum = i + 1;
+        pages[i].onclick = function () {
+          if (this.pageNum % 2 === 0) {
+            this.classList.remove("flipped");
+            this.previousElementSibling.classList.remove("flipped");
+          } else {
+            this.classList.add("flipped");
+            this.nextElementSibling.classList.add("flipped");
+          }
+        };
+      }
+    });
+  </script>
+</html>

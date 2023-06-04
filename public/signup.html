@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>DIGISIGN</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="../Photos/Logo/favicon.png">
+</head>
+<style>
+  html {
+  height: 100%;
+  }
+  body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background-color: #f8f6e9;
+  }
+
+  .login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: #cda986;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  }
+
+  .login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  }
+
+  .login-box .user-box {
+  position: relative;
+  }
+
+  .login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+  }
+  .login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+  }
+
+  .login-box .user-box input:focus ~ label,
+  .login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #ffffff;
+  font-size: 12px;
+  }
+
+.login-box .user-box input:focus ~ span,
+  .login-box .user-box input:valid ~ span {
+  top: -20px;
+  right: 0;
+  color: #ff0000;
+  font-size: 12px;
+  }
+
+span{
+  color: red;
+}
+  .btn-outline-light:hover {
+  background: #fff;
+  color: black;
+  border-radius: 9px;
+  box-shadow: 0 0 5px #c4c4c4,
+              0 0 25px #c4c4c4,
+              0 0 50px #c4c4c4,
+              0 0 100px #c4c4c4;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+  
+</style>
+
+<body>
+    <div class="login-box">
+      <center><br><br>  
+        <a href="./main1.html" style="color:white; text-decoration: none"><h1 style="color:white;font-family: raleway;">Read & Gain</h1></a>
+      </center><br>
+    <h2>REGISTER</h2>
+    <form action="/register" method="post" onsubmit="return validate()">
+      <form action="">
+      <div class="user-box">
+        <span id = "name_error"></span>
+        <input type="text" name="Name"  id="name" onkeyup="return validateName()" >
+        <label id="fname">Name</label> 
+      </div>
+      <div class="user-box">
+        <input type="email" name="email"  id="email"  onkeyup="return validateEmail()" >
+        <label id="ema">Email</label>
+      </div>
+      <div class="user-box">
+        <input type="number" name="PhoneNumber" id="number"  onkeyup="return validatenumber()" >
+        <label id="num">Phone number</label>
+      </div>
+      <div class="user-box">
+        <input type="number" name="Age" id="age"  onkeyup="return validateAge()" >
+        <label id="a">Age</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="password"  id="password"  onkeyup="return validatePassword()">
+        <label id="pass">Password (minimum 8 charectors)</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="Conform_number"  id="conform_password"  onkeyup="return validatePassword_check()">
+        <label id="check_pass">Conform Password</label>
+      </div>
+      <div class="row">
+        <button type="submit" class="col btn btn-outline-light">Sign up</button>
+      </div><br> 
+      <label style="color:white;text-align: center;">Already have an account? </label> 
+      <a href="login.html" style="color:rgb(92, 17, 17)">Sign in</a>
+      
+    </form>
+  </div>
+</body>
+
+<script>
+
+function validate(){
+  var name = document.getElementById('name').value;
+  var check = /^[a-zA-Z]+$/
+  if(name.length == 0 || !name.match(check))
+  {
+    document.getElementById("name").style.borderBottomColor = "red";
+    document.getElementById("fname").style.color = "red";
+    document.getElementById('name').focus();
+    return false;
+  }
+  else{
+    document.getElementById("name").style.borderBottomColor = "white";
+    document.getElementById("fname").style.color = "white";
+  }
+  var email = document.getElementById('email').value;
+  var chech_email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if(!email.match(chech_email))
+  {
+    document.getElementById("email").style.borderBottomColor = "red";
+    document.getElementById("ema").style.color = "red";
+    document.getElementById('email').focus();
+    return false;
+  }
+  else{
+    document.getElementById("email").style.borderBottomColor = "white";
+    document.getElementById("ema").style.color = "white";
+  }
+
+  var number = document.getElementById('number').value;
+  if(number.length == 10){
+    document.getElementById("number").style.borderBottomColor = "white";
+    document.getElementById("num").style.color = "white";
+  }
+  else{
+    document.getElementById("number").style.borderBottomColor = "red";
+    document.getElementById("num").style.color = "red";
+    document.getElementById('number').focus();
+    return false;
+  }
+
+
+  var age = document.getElementById('age').value;
+  if(age.length == 0){
+    document.getElementById("age").style.borderBottomColor = "red";
+    document.getElementById("a").style.color = "red";
+    document.getElementById('age').focus();
+    return false;
+  }
+  else{
+    document.getElementById("age").style.borderBottomColor = "white";
+    document.getElementById("a").style.color = "white";
+  }
+
+
+  var password = document.getElementById('password').value;
+  var check_pass = document.getElementById('conform_password').value;
+  if(password!=check_pass)
+  {
+    document.getElementById("password").style.borderBottomColor = "red";
+    document.getElementById("pass").style.color = "red";
+    document.getElementById('password').focus();
+    return false;
+  }
+  else if(check_pass!=password)
+  {i
+    document.getElementById("conform_password").style.borderBottomColor = "red";
+    document.getElementById("check_pass").style.color = "red";
+    document.getElementById('conform_password').focus();
+    return false;
+  }
+}
+
+
+
+function validateName()
+{
+  var name = document.getElementById("name").value;
+  if(name.length == 0){
+    document.getElementById("name").style.borderBottomColor = "red";
+    document.getElementById("fname").style.color = "red";
+    return false;
+  }
+  else{
+    document.getElementById("name").style.borderBottomColor = "white";
+    document.getElementById("fname").style.color = "white";
+    return true;
+  }
+}
+
+
+function validateEmail()
+{
+  var name = document.getElementById("email").value;
+  if(name.length == 0){
+    document.getElementById("email").style.borderBottomColor = "red";
+    document.getElementById("ema").style.color = "red";
+    return false;
+  }
+  else{
+    document.getElementById("email").style.borderBottomColor = "white";
+    document.getElementById("ema").style.color = "white";
+    return true;
+  }
+}
+
+function validatenumber()
+{
+  var name = document.getElementById("number").value;
+  if(name.length == 10){
+    document.getElementById("number").style.borderBottomColor = "white";
+    document.getElementById("num").style.color = "white";
+    return true;
+  }
+  else{
+    document.getElementById("number").style.borderBottomColor = "red";
+    document.getElementById("num").style.color = "red";
+    return false;
+  }
+}
+
+function validateAge()
+{
+  var name = document.getElementById("age").value;
+  if(name.length == 0){
+    document.getElementById("age").style.borderBottomColor = "red";
+    document.getElementById("a").style.color = "red";
+    return false;
+  }
+  else{
+    document.getElementById("age").style.borderBottomColor = "white";
+    document.getElementById("a").style.color = "white";
+    return true;
+  }
+}
+
+function validatePassword()
+{
+  var name = document.getElementById("password").value;
+  if(name.length < 8){
+    document.getElementById("password").style.borderBottomColor = "red";
+    document.getElementById("pass").style.color = "red";
+    return false;
+  }
+  else{
+    document.getElementById("password").style.borderBottomColor = "white";
+    document.getElementById("pass").style.color = "white";
+    return true;
+  }
+}
+
+function validatePassword_check()
+{
+  var check = document.getElementById("conform_password").value;
+  var name = document.getElementById("password").value;
+  if(name != check){
+    document.getElementById("conform_password").style.borderBottomColor = "red";
+    document.getElementById("check_pass").style.color = "red";
+    return false;
+  }
+  else{
+    document.getElementById("conform_password").style.borderBottomColor = "white";
+    document.getElementById("check_pass").style.color = "white";
+    return true;
+  }
+}
+
+
+</script>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Read & Gain</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <style>
+    span{
+        color: red;
+    }
+    body{
+        background-color: #f8f6e9;
+    }
+  </style>
+  <body>
+    <form action="/home" method="post">
+        <button type="submit" class="btn btn-outline-dark btn-lg" style="background-color: black;" ><a href="book.ejs" style="text-decoration: none;color: white;" ><h1 >Go back</h1></a></button>
+    </form>
+    <center>
+        <div style="width: 70%;border: 20px solid black;border-radius: 50px;"><br>
+      <form action="/submit_summary" method="post" onsubmit="return validate()">
+        <h4>Title of the Book</h4> <span id="Title"></span>
+        <input type="text" name="title" id="title"/> <br><br>
+        <h4>Author of the Book</h4> <span id="Author"></span>
+        <input type="text" name="author" id="author"><br><br>
+        <h4>Summary</h4> <span id="Summary"></span>
+        <textarea name="summary" id="summary" cols="80" rows="30"></textarea><br>
+        <button type="submit" class="btn btn-outline-dark btn-lg">Submit</button>
+      </form><br>
+    </div>
+    </center>
+  </body>
+  <script>
+    function validate(){
+        const title = document.getElementById('title').innerHTML;
+        const author = document.getElementById('author').innerHTML;
+        const summary = document.getElementById('summary').innerHTML;
+        const check_title = /^[a-zA-Z]+$/;
+        const check_auther = /^[a-zA-Z]+$/;
+        const check_summary = /^[a-zA-Z]{200-1000}$/;
+        // if(!title.match(check_title)){
+        //     document.getElementById('Title').innerHTML = "Title is not valid";
+        //     return false;
+        // }
+        // else{
+        //     document.getElementById('Title').innerHTML = "";
+        // }
+        // if(!author.match(check_auther)){
+        //     document.getElementById('Author').innerHTML = "Title is not valid";
+        //     return false;
+        // }
+        // else{
+        //     document.getElementById('Author').innerHTML = "";
+        // }
+        // if(!summary.match(check_summary)){
+        //     document.getElementById('Summary').innerHTML = "Title is not valid";
+        //     return false;
+        // }
+        // else{
+        //     document.getElementById('Author').innerHTML = "";
+        // }
+
+    }
+  </script>
+</html>
